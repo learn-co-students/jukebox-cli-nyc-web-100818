@@ -42,7 +42,7 @@ end
 
 def run(songs)
   help
-  loop do
+  loop do # keep going until exit breaks us out 
     puts "Please enter a command:"
     command = gets.chomp
 
@@ -50,7 +50,8 @@ def run(songs)
       when 'list'
         list(songs)
       when 'play'
-        play(songs)
+        list(songs) # show songs to play
+        play(songs) # then play
       when 'help'
         help
       when 'exit'
