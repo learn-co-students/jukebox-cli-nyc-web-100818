@@ -28,7 +28,7 @@ def play(songs)
   songs_list = list(songs) # setting a var equal to the method list
 
   songs_list.each do |song|
-    if songs.include?(user_response)
+    if songs.include?(user_response) ||  user_response.to_i == (1..9)
       puts "Playing #{user_response}"
     else
       puts "Invalid input, please try again"
@@ -38,27 +38,26 @@ end
 
 def exit_jukebox
   puts "Goodbye"
-  return
 end
 
 def run(songs)
   help
-
-  until gets.chomp.downcase == "exit"
+  loop do
     puts "Please enter a command:"
-    gets.chomp
-  end
+    command = gets.chomp
 
-  case gets.chomp
-    when "list"
-      list(songs)
-    when "play"
-      play(songs)
-    when "help"
-      help
-    when "exit"
-      exit_jukebox
-      exit
+    case command.downcase
+      when 'list'
+        list(songs)
+      when 'play'
+        play(songs)
+      when 'help'
+        help
+      when 'exit'
+        exit_jukebox
+        break
+      else
+        help
+    end
   end
-
 end
